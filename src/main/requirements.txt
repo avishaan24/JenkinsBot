@@ -1,0 +1,9 @@
+In Jenkins :
+  (a) Install Jenkins build user vars plugin (https://plugins.jenkins.io/build-user-vars-plugin/)
+        -> Tick the Set jenkins user build variables in build environment of the job
+  (b) Install Groovy plugin (https://plugins.jenkins.io/groovy/)
+        -> Choose system Groovy script and in Groovy command paste the code of build.groovy.
+        -> Make sure to replace Job Name with your Job-Name in the Jenkins
+  (c) Install Groovy PostBuild plugin (https://plugins.jenkins.io/groovy-postbuild/)
+        -> In post build action choose Groovy postBuild.
+        -> Paste the code of postBuild.groovy in the groovy script.
