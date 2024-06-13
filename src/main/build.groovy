@@ -62,12 +62,14 @@ def collectUsersInTimeFrame() {
     def recentBuild = jobBuilds.first()
     def recentParameters = getBuildParameters(recentBuild)
     def causeAction = recentBuild.getAction(hudson.model.CauseAction.class)
-    def userId = ""
+    def userEmail = ""
     if(causeAction != null){
         def causes = causeAction.getCauses()
         causes.each{ cause->
             if (cause instanceof hudson.model.Cause.UserIdCause) {
-                userId = cause.getUserId()
+                def userId = cause.getUserId()
+                def user = User.get(userId, false, null)
+                userEmail = user.getProperty(hudson.tasks.Mailer.UserProperty)?.address
             }
         }
     }
@@ -92,9 +94,12 @@ def collectUsersInTimeFrame() {
                             def causes = causeAction.getCauses()
                             causes.each { cause ->
                                 if (cause instanceof hudson.model.Cause.UserIdCause) {
-                                    if(userId != cause.getUserId())
-                                    // Add userId to the list if the build was successful and meets the parameter constraint
-                                    usersInTimeFrame.add(cause.getUserId())
+                                    def userId = cause.getUserId()
+                                    def user = User.get(userId, false, null)
+                                    def userEmailCurrent = user.getProperty(hudson.tasks.Mailer.UserProperty)?.address
+                                    if(userEmail != userEmailCurrent)
+                                    // Add userEmail to the list if the build was successful and meets the parameter constraint
+                                        usersInTimeFrame.add(userEmailCurrent)
                                 }
                             }
                         }

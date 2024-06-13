@@ -37,12 +37,14 @@ def sendPostRequest(String urlString, String payload) {
 }
 
 def url = "http://localhost:3978/api/notify"
-def buildUserId = manager.envVars['BUILD_USER_ID']
+def buildUser = manager.envVars["BUILD_USER"]
+def buildUserId = manager.envVars["BUILD_USER_ID"]
+def buildUserEmail = manager.envVars["BUILD_USER_EMAIL"]
 def buildNumber = manager.envVars['BUILD_NUMBER']
 def buildUrl =manager.envVars['BUILD_URL']
 
 def buildResult = manager.build.result
-def payload = "{\"build_result\": \"${buildResult}\", \"build_user_id\": \"${buildUserId}\", \"build_number\": \"${buildNumber}\", \"build_url\": \"${buildUrl}\"}"
+def payload = "{\"build_result\": \"${buildResult}\", \"build_user\": \"${buildUser}\", \"build_user_id\": \"${buildUserId}\", \"build_user_email\": \"${buildUserEmail}\", \"build_number\": \"${buildNumber}\", \"build_url\": \"${buildUrl}\"}"
 
 
 

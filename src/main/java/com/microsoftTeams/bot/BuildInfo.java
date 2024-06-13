@@ -19,6 +19,13 @@ public class BuildInfo {
     @JsonProperty("build_url")
     private String buildUrl;
 
+    @JsonProperty("build_user")
+    private String buildUser;
+
+    @JsonProperty("build_user_email")
+    private String buildUserEmail;
+
+
     // Constructor
     public BuildInfo() {}
 
@@ -53,5 +60,21 @@ public class BuildInfo {
 
     public void setBuildUrl(String buildUrl) {
         this.buildUrl = buildUrl;
+    }
+
+    public String getBuildUser() {
+        return buildUser;
+    }
+
+    public void setBuildUser(String buildUser) {
+        this.buildUser = buildUser;
+    }
+
+    public String getBuildUserEmail() {
+        return buildUserEmail;
+    }
+
+    public void setBuildUserEmail(String buildUserEmail) {
+        this.buildUserEmail = buildUserEmail;
     }
 }

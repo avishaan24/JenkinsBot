@@ -20,15 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class NotifyController {
     /**
-     * The BotFrameworkHttpAdapter to use. Note is is provided by dependency
+     * The BotFrameworkHttpAdapter to use. Note it is provided by dependency
      * injection via the constructor.
      *
      * @see com.microsoft.bot.integration.spring.BotDependencyConfiguration
      */
     private final BotFrameworkHttpAdapter adapter;
-
-    private ConversationReferences conversationReferences;
-    private String appId;
+    private final ConversationReferences conversationReferences;
+    private final String appId;
 
     @Autowired
     public NotifyController(
@@ -41,11 +40,15 @@ public class NotifyController {
         appId = withConfiguration.getProperty("MicrosoftAppId");
     }
 
+    /**
+     * Fetching build related information from the Jenkins the api/notify endpoint
+     * @param buildInfo
+     */
     @PostMapping("/api/notify")
     public void proactiveMessage(@RequestBody BuildInfo buildInfo) {
         HeroCard heroCard = new HeroCard();
         heroCard.setTitle("Build Notification from Jenkins");
-        heroCard.setSubtitle("Hii, " + buildInfo.getBuildUserId());
+        heroCard.setSubtitle("Hii, " + buildInfo.getBuildUser() + " ( " +  buildInfo.getBuildUserEmail() + " )");
         heroCard.setText("Your Jenkins build, labeled as number " + buildInfo.getBuildNumber() + ", has achieved " + buildInfo.getBuildResult());
         heroCard.setButtons(new CardAction(ActionTypes.OPEN_URL, "View Build", buildInfo.getBuildUrl()));
         if(!conversationReferences.isEmpty()) {
@@ -59,6 +62,10 @@ public class NotifyController {
         }
     }
 
+    /**
+     * fetching all the users whose build is overridden in the given time frame
+     * @param users
+     */
     @PostMapping("/api/check")
     public void allUsersOverridden(@RequestBody  Object users){
         System.out.println(users);
