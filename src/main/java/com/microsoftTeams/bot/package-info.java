@@ -1,4 +1,4 @@
 /**
- * This package contains the classes for the proactive messages sample.
+ * This package contains the classes for sending notification related to build from Jenkins to MS teams.
  */
 package com.microsoftTeams.bot;
