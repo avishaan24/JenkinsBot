@@ -5,13 +5,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.microsoft.bot.sample</groupId>
-    <artifactId>bot-proactive</artifactId>
+    <groupId>com.microsoftTeams.bot</groupId>
+    <artifactId>Jenkins-Notification</artifactId>
     <version>sample</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <description>This package contains a Java Bot Proactive Messages sample using Spring Boot.</description>
+    <description>This package contains a Java Bot which is used to send notification regarding build information from Jenkins using Spring Boot.</description>
     <url>http://maven.apache.org</url>
 
     <parent>
@@ -21,21 +21,6 @@
         <relativePath/>
     </parent>
 
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>http://www.opensource.org/licenses/mit-license.php</url>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <name>Bot Framework Development</name>
-            <email></email>
-            <organization>Microsoft</organization>
-            <organizationUrl>https://dev.botframework.com/</organizationUrl>
-        </developer>
-    </developers>
 
     <properties>
         <java.version>1.8</java.version>
@@ -43,17 +28,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <start-class>com.microsoftTeams.bot.Application</start-class>
     </properties>
-
-    <repositories>
-      <repository>
-        <id>oss-sonatype</id>
-        <name>oss-sonatype</name>
-        <url> https://oss.sonatype.org/content/repositories/snapshots/ </url>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-      </repository>
-    </repositories>
 
     <dependencies>
       <dependency>

@@ -51,6 +51,8 @@ public class NotifyController {
         heroCard.setSubtitle("Hii, " + buildInfo.getBuildUser() + " ( " +  buildInfo.getBuildUserEmail() + " )");
         heroCard.setText("Your Jenkins build, labeled as number " + buildInfo.getBuildNumber() + ", has achieved " + buildInfo.getBuildResult());
         heroCard.setButtons(new CardAction(ActionTypes.OPEN_URL, "View Build", buildInfo.getBuildUrl()));
+
+        // send notification only to the first user for testing purpose
         if(!conversationReferences.isEmpty()) {
             ConversationReference reference = conversationReferences.entrySet().iterator().next().getValue();
             adapter.continueConversation(

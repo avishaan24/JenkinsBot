@@ -119,6 +119,11 @@ public class JenkinsBot extends ActivityHandler {
                         // if it is less than 240 minutes then notify user to wait
                         else{
                             long remain = 240 - minuteDifference;
+                            if(userInfo.getUserId().equals(turnContext.getActivity().getConversationReference().getUser().getId())){
+                                return turnContext
+                                        .sendActivity(MessageFactory.text(String.format("'%s' is already locked by you.\n \n It will be available after " + remain + " minutes for all.", words.get(1))))
+                                        .thenApply(sendResult -> null);
+                            }
                             return turnContext
                                     .sendActivity(MessageFactory.text(String.format("'%s' will be available after " + remain + " minutes.", words.get(1))))
                                     .thenApply(sendResult -> null);
